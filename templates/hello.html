@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script  type="text/javascript" src="/static/js/jquery-3.2.1.min.js"></script>
+    <title>Title</title>
+
+</head>
+<body>
+    <h1>{{hello}}</h1>
+    <p>
+        <input type="text" id="content" name="content">
+        <input type="button" id="submit" value="提交">
+    </p>
+    <p><input type="text" id="import"></p>
+</body>
+<script type="text/javascript">
+    $(document).ready(function(){
+        //得到词频
+        $("#submit").click(function(){
+            var content =  $("#content").val();
+            alert(content);
+            $.ajax({
+                type: "POST",
+                url : "/getKey",
+                data: {content : content},
+                dataType: "json",
+                success: function(data) {
+                    $("#import").val(data);
+                },
+                error: function(data){
+
+                }
+            });
+        });
+
+
+    });
+</script>
+</html>
